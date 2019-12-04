@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>야구 게임</title>
+</head>
+<body>
+    <h1>신나는 야구 게임!</h1>
+    <script>
+        function selectRandomCase() {
+            var arr = ["S","B","O","H"];
+            var random = arr[Math.floor(Math.random()*4)];
+            return random;
+        }
+
+        var count_S = 0; var count_B = 0; var count_H = 0; var count_O = 0;
+        
+        function checkStrike() {
+            count_S += 1; if(count_S === 3) {
+                count_O += 1;
+                count_S = 0; 
+            } return [count_S,count_B,count_H,count_O];
+        }
+
+        function checkBall() {
+            count_B += 1; if(count_B === 4) {
+                count_H += 1;
+                count_B = 0;        
+            } return [count_S,count_B,count_H,count_O];
+        }
+
+        function checkHit() {
+            count_H += 1;
+            count_S = 0;
+            count_B = 0;
+            return [count_S,count_B,count_H,count_O];       
+        }
+
+        function checkOut() {
+            count_O += 1;
+            count_S = 0;
+            count_B = 0;        
+            return [count_S,count_B,count_H,count_O];         
+        }
+    </script>
+</body>
+</html>
