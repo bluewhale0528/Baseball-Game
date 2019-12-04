@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>야구 게임</title>
+</head>
+<body>
+    <h1>신나는 야구 게임!</h1>
+    <script>
+        document.write("첫 번째 타자가 타석에 입장했습니다." + "<br>" + "<br>")
+        var arr = ["S","B","O","H"];
+        var count_S=0;
+        var count_B=0;
+        var count_O=0;
+        var count_H=0;
+        while(count_O < 3) {
+            var input = arr[Math.floor(Math.random()*4)];
+
+            if(input === "S") {
+                count_S += 1; if(count_S === 3) {
+                    count_O += 1;
+                    count_S = 0;
+                }
+                document.write("스트라이크!" + "<br>" + count_S + "S " + count_B + "B " + count_O + "0 " + "<br>" + "<br>");
+            } else if(input === "B") {
+                count_B += 1; if(count_B === 4) {
+                    count_H += 1;
+                    count_B = 0;
+                }
+                document.write("볼!" + "<br>" + + count_S + "S " + count_B + "B " + count_O + "0 " + "<br>" + "<br>");
+            } else if(input === "H") {
+                count_H += 1;
+
+                count_S = 0;
+                count_B = 0;
+                document.write("안타! 다음 타자가 타석에 입장했습니다." + "<br>");
+                document.write(count_S + "S " + count_B + "B " + count_O + "0 " + "<br>" + "<br>");
+            } else {
+                count_O += 1;
+
+                count_S = 0;
+                count_B = 0;
+                document.write("아웃! 다음 타자가 타석에 입장했습니다." + "<br>");
+                document.write(count_S + "S " + count_B + "B " + count_O + "0 " + "<br>" + "<br>");
+            }
+        } 
+        document.write("최종 안타수 : " + count_H + "<br>" + "GAME OVER");
+        
+    </script>
+</body>
+</html>
