@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>신나는 야구시합</title>
+</head>
+<style>
+    input[type="radio"] {display: none}
+    input[type="radio"]+label {display: inline-block; padding: 20px; cursor: pointer}
+    input[type="radio"]:checked+label {background: rgb(156, 204, 79); color: #000}
+    .conbox {width: 1000px; height: 600px; display: none}
+    input[id="tab01"]:checked~.con1 {display: block}
+    input[id="tab02"]:checked~.con2 {display: block}
+    input[id="tab03"]:checked~.con3 {display: block}
+    button {
+        font-size: 15px;
+        margin: 20px;
+    }
+</style>
+<div class="tab_content">
+    <input type="radio" name="tabmenu" id="tab01" checked>
+    <label for="tab01">1. 데이터 입력</label>
+    <input type="radio" name="tabmenu" id="tab02">
+    <label for="tab02">2. 데이터 출력</label>
+    <input type="radio" name="tabmenu" id="tab03">
+    <label for="tab03">3. 게임 시작</label>
+
+    <div class="conbox con1">
+        <button onclick="input()">데이터 입력 시작</button><br><br>
+    </div>
+    <div class="conbox con2">
+        <button onclick="output()">데이터 결과 보기</button><br><br>
+    </div>
+    <div class="conbox con3">
+        <button onclick="runGame()">게임 시작</button>
+    </div>
+</div>
+
+<body>
+    <script>
+        var teamA = {};
+        var teamB = {};
+
+        function inputName(team) {
+            while (true) {
+                if (team === teamA) {
+                    var i = 1;
+                } else {
+                    i = 2;
+                }
+                var str1 = prompt(i + "팀의 이름을 입력하세요");
+                if (str1.length != 0) {
+                    team.name = str1;
+                    break;
+                } else {
+                    alert("에러! 다시입력하세요");
+                }
+            } return team;
+        }
+
+        function inputplayer(team) {
+            for (var i = 1; i <= 9; i++) {
+                while (true) {
+                    var str = prompt(i + "번 타자 정보 입력 \n 형식 : 이름, 타율 (단, 타율은 0.1과 0.5 사이이고, 소수 셋째자리까지 입력)");
+                    if (str.indexOf(",") != -1) {
+                        var check = str.split(", ");
+                        if (Number(check[1]) > 0.1 & Number(check[1]) < 0.5 & check[1].length === 5) {
+                            team[i] = check;
+                            team[i].unshift(i + "번");
+                            break;
+                        } else {
+                            alert("에러! 조건에 맞게 다시 입력하세요");
+                        }
+                    } else {
+                        alert("에러! 조건에 맞게 다시 입력하세요");
+                    }
+                }
+            } return team;
+        }
+    </script>
+</body>
+</html>
